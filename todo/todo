@@ -1,0 +1,104 @@
+COMMON
+
+CREATE MODELS
+    Article {
+        id,
+        titre,
+        metaTitle,
+        metaDescription,
+        contenu,
+        motCle,
+        priorite,
+        imageCouverture,
+        datePublication,
+        auteur,
+        type,
+        Liste de media,
+
+        Creer la fonction extract()
+        Creer la fonction getUrl() -> id, slug
+        Creer la fonction save() -> update / insert
+        Creer la fonction isCorrect() -> boolean
+
+    }
+    Auteur {
+        id,
+        nom,
+        role
+    }
+    TypeArticle {
+        id,
+        libelle
+    }
+    Media {
+        id,
+        url,
+        article
+
+    }
+
+FRONTOFFICE
+
+TRAITEMENT IMAGE (ImageService)
+    Creer la fonction compression(img)
+
+TRAIETEMENT AUTEUR (AuteurService)
+    Creer la fonction getAll()
+
+TRAITEMENT ARTICLE (ArticleService)
+    Creer la fonction getById(id) -> article
+    Creer la fonction getAll() avec filtre (mot cle {motCle, titre, type} , limit) -> liste article
+    Creer la fonction getArticlesLiees(id) -> liste article
+    Creer la fonction getArticlesRecentes() -> liste article
+    Creer la fonction getArticlesPlusLues() -> liste article
+    Creer la fonction getAllTypes() -> liste type d'article
+    Creer la fonction getArticlesAnalysesRapports() -> liste article recente
+    Creer la fonction deleteById(id)
+    Creer la fonction getRecommandationSEO()
+
+TRAITEMENT ACCUEIL 
+    Appel de la fonction getById(id)
+    Appel de la fonction extract()
+    Appel de la fonction getAllTypes()
+    Appel de la fonction getArticlesLiees(id)
+
+INTEGRATION 
+    dans la pages accueil.php et traitement_accueil.php
+
+
+TRAITEMENT LISTE ARTICLE
+    Appel de la fonction getAll() avec le filtre
+    Appel de la fonction getAllTypes()
+
+INTEGRATION 
+    dans la pages liste_article.php et traitement_liste_article.php
+
+
+TRAITEMENT DETAIL ARTICLE
+    Appel de la fonction getById(id)
+    Appel de la fonction getArticlesLiees(id)
+    Appel de la fonction getArticlesRecentes()
+    Appel de la fonction getArticlesPlusLues()
+    Appel de la fonction getArticlesAnalysesRapports()
+    Appel de la fonction getAllTypes()
+
+INTEGRATION 
+    dans la pages detail_article.php et traitement_detail_article.php
+
+
+TRAITEMENT LOGIN (UserService)
+    Creer la fonction authentification(email, motDePasse)
+
+INTEGRATION 
+    dans la pages login.php et traitement_login.php
+
+CONFIGURATION HTACCESS
+    Activation de Gzip
+    Creation du rewriting (routage)
+    Activation de mode expiration
+    Gestion codes HTTP : 200 OK · 301 redirect · 404 cassé · 410 supprimé
+
+CREATION des referencements seo
+    sitemap.xml
+    robot.txt
+

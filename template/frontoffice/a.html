@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizon Info | Actualités Internationales</title>
+    <link rel="stylesheet" href="../assets/css/fo-styles.css">
+</head>
+
+<body>
+
+    
+    <div class="container">
+        <!-- Section héroïque type "une" -->
+        <div class="hero">
+            <div class="hero-main">
+                <div class="category">À LA UNE</div>
+                <h1>Les enjeux diplomatiques au Moyen-Orient : quel équilibre pour 2026 ?</h1>
+                <p>Analyse des récentes initiatives régionales et du rôle des acteurs internationaux dans la stabilité.
+                </p>
+            </div>
+            <div class="hero-side">
+                <div class="hero-card">
+                    <div class="category">ENTRETIEN</div>
+                    <h3>Christophe Castille : "La coopération économique peut apaiser les tensions"</h3>
+                    <p>L'ancien diplomate revient sur les mécanismes de confiance entre États.</p>
+                </div>
+                <div class="hero-card">
+                    <div class="category">RAPPORT</div>
+                    <h3>L'aide humanitaire en 2025 : chiffres clés et défis logistiques</h3>
+                    <p>Les organisations internationales face à l'augmentation des besoins.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dernières actualités -->
+        <div class="section-header">
+            <h2>Dernières actualités</h2>
+            <a href="c.html" class="section-link">Voir tout →</a>
+        </div>
+        <div class="articles-grid" id="latest-articles">
+            <!-- JS va remplir ici -->
+        </div>
+
+        <!-- Section analyse et opinion -->
+        <div class="two-column-layout">
+            <div>
+                <div class="section-header" style="margin-top:0">
+                    <h2>Analyses & Décryptages</h2>
+                </div>
+                <div class="analysis-card">
+                    <div class="article-category">GÉOPOLITIQUE</div>
+                    <h3 style="font-size: 20px;">Le corridor Nord-Sud : un enjeu stratégique méconnu</h3>
+                    <p style="margin: 12px 0">Les infrastructures et les routes commerciales redessinent les alliances.
+                        Une lecture par notre expert résident.</p>
+                    <div class="meta">Par Camille Lefèvre · 28 mars 2026</div>
+                </div>
+                <div class="analysis-card">
+                    <div class="article-category">DÉFENSE</div>
+                    <h3 style="font-size: 20px;">Nouvelle doctrine de dissuasion : quelles évolutions ?</h3>
+                    <p style="margin: 12px 0">Les équilibres militaires régionaux et l'impact des technologies
+                        émergentes.</p>
+                    <div class="meta">Par Marc Delaunay · 27 mars 2026</div>
+                </div>
+            </div>
+            <div>
+                <div class="section-header" style="margin-top:0">
+                    <h2>Les plus lus</h2>
+                </div>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 12px;">
+                        <span style="font-weight: bold; color:#cc0000;">1.</span>
+                        <a href="#" style="text-decoration: none; color: #1a1a1a; font-weight: 500;">Pourquoi la crise
+                            humanitaire s'intensifie dans la région</a>
+                    </li>
+                    <li style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 12px;">
+                        <span style="font-weight: bold; color:#cc0000;">2.</span>
+                        <a href="#" style="text-decoration: none; color: #1a1a1a; font-weight: 500;">L'économie des
+                            conflits : reconstruction et sanctions</a>
+                    </li>
+                    <li style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 12px;">
+                        <span style="font-weight: bold; color:#cc0000;">3.</span>
+                        <a href="#" style="text-decoration: none; color: #1a1a1a; font-weight: 500;">Reportage : dans
+                            les coulisses des négociations à Vienne</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Données fictives basées sur des thématiques générales et non polémiques
+        const articles = [
+            {
+                category: "DIPLOMATIE",
+                title: "Les pourparlers sur le nucléaire : état des lieux",
+                excerpt: "Retour sur les cycles de négociations et la position des différentes capitales.",
+                date: "29 mars 2026"
+            },
+            {
+                category: "ÉCONOMIE",
+                title: "Marchés pétroliers : la volatilité en question",
+                excerpt: "Analyse des fluctuations des prix et de l'impact sur les économies régionales.",
+                date: "28 mars 2026"
+            },
+            {
+                category: "DROITS HUMAINS",
+                title: "ONG : comment protéger les civils en zone de conflit",
+                excerpt: "Les défis rencontrés par les acteurs humanitaires sur le terrain.",
+                date: "27 mars 2026"
+            }
+        ];
+
+        function renderArticles() {
+            const container = document.getElementById('latest-articles');
+            if (!container) return;
+            container.innerHTML = articles.map(art => `
+                <div class="article-card">
+                    <div class="article-img">📷 Illustration</div>
+                    <div class="article-category">${art.category}</div>
+                    <h3>${art.title}</h3>
+                    <p>${art.excerpt}</p>
+                    <div class="meta">Publié le ${art.date}</div>
+                </div>
+            `).join('');
+        }
+
+        renderArticles();
+    </script>
+</body>
+
+</html>

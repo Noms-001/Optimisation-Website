@@ -1,0 +1,15 @@
+RewriteEngine On
+
+# =========================
+# BACKOFFICE
+# =========================
+RewriteRule ^backoffice$ backoffice/index.php [L]
+RewriteRule ^backoffice/(.*)$ backoffice/$1 [L]
+
+# =========================
+# FRONT ROUTES
+# =========================
+RewriteRule ^$ frontoffice/index.php [L]
+
+RewriteRule ^article/([a-zA-Z0-9-]+)$ frontoffice/article.php?slug=$1 [L]
+RewriteRule ^category/([a-zA-Z0-9-]+)$ frontoffice/category.php?slug=$1 [L]

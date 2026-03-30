@@ -1,0 +1,72 @@
+conception
+    mcd
+
+design template (html)
+    wireframe
+        backoffice
+            login
+            liste des pages (avec possibilite d'ajout supression)
+            page d'edition
+                rating
+            crud
+
+        frontoffice
+            HomePage
+                categorie d'article
+            Article
+    modelisation des template
+        responisive design
+    integration de tiny (backoffice)
+
+initialisation du projet
+
+    structure des dossier
+    connection base
+    docker
+        docker compose et test
+
+metier
+    backoffice
+        authentification
+        gestion crud
+        integration des controlles et des blocks (section html)
+            limitation des modification des blocks (h1, h2, content, ...)
+            ajout, suppression, modification, enregistrement
+            meta (titre, description,...)
+        generation des pages 
+        integration des uploads images
+            compression
+            alt
+        gestion rating
+            vérifier :
+                longueur title
+                meta description
+                mot-clé présent
+                mot-clé dans H1, url, description, slug
+                densité mot-clé
+                nombre de mots
+                présence H2
+                alt
+            afficher score /100
+            suggestions simples
+
+    frontoffice
+        recherche
+        suggestions (meme auteur, meme categorie)
+        article recents
+        pagination
+
+seo basique
+    site map
+    robot.txt
+    configuration de htaccess
+        gzip    
+        routage
+        expiration
+    erreur http (404,500, ...)
+
+performance
+    minimiser les css et js
+    cache HTML
+        versionning des fichier static
+    lazy load
