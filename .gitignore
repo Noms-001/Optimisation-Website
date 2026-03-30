@@ -1,0 +1,16 @@
+# Ignorer les fichiers de template
+template/
+*.template
+_template*/
+
+# Ignorer le fichier todo
+todo.txt
+
+# Fichiers système courants
+.DS_Store
+Thumbs.db
+
+# Fichiers d'éditeur courants
+.vscode/
+.idea/
+*.swp
