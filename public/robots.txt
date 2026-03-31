@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Pages à ne pas indexer
+Disallow: /backoffice/
+Disallow: /assets/
+Disallow: /uploads/private/
+
+# Sitemap
+Sitemap: http://localhost:8080/sitemap.xml
