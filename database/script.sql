@@ -15,7 +15,7 @@ CREATE TABLE type_article(
 CREATE TABLE utilisateur(
    id_utilisateur INT AUTO_INCREMENT,
    email VARCHAR(250) ,
-   mot_de_passe VARCHAR(50)  NOT NULL,
+   mot_de_passe VARCHAR(250)  NOT NULL,
    PRIMARY KEY(id_utilisateur)
 );
 
