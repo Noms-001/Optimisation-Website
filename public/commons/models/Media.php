@@ -5,6 +5,7 @@ class Media
     public $id;
     public $src;
     public $alt;
+    public $paragraphe;
     public $article; // article id ou object
 
     public function __construct($data = [])
