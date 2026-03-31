@@ -77,10 +77,6 @@ INTEGRATION
 TRAITEMENT DETAIL ARTICLE
     Appel de la fonction getById(id)
     Appel de la fonction getArticlesLiees(id)
-    Appel de la fonction getArticlesRecentes()
-    Appel de la fonction getArticlesPlusLues()
-    Appel de la fonction getArticlesAnalysesRapports()
-    Appel de la fonction getAllTypes()
 
 INTEGRATION 
     dans la pages detail_article.php et traitement_detail_article.php
