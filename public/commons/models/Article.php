@@ -34,6 +34,29 @@ class Article
         return "/article/" . $this->id . "-" . $slug;
     }
 
+    public function srcThumb(): string
+    {
+        return $this->buildSrc('thumb');
+    }
+
+    public function srcMini(): string
+    {
+        return $this->buildSrc('mini');
+    }
+
+    private function buildSrc(string $size): string
+    {
+        if (empty($this->imageSrc)) return '';
+
+        if ($size === 'cover') {
+            return $this->imageSrc;
+        }
+
+        $parts = pathinfo($this->imageSrc);
+
+        return $parts['filename'] . '_' . $size . '.jpg';
+    }
+
     public function getRecommandationTitre(): array
     {
         $score = 0;
@@ -373,55 +396,101 @@ class Article
         ];
     }
 
+    public function firstParagraph(): string
+    {
+        $extract = $this->extract();
+
+        $firstP = null;
+
+        foreach ($extract["blocks"] as $block) {
+            if ($block["type"] === "p") {
+                $firstP = $block["text"];
+                break;
+            }
+        }
+        return $firstP;
+    }
+
     public function extract(): array
     {
         $html = $this->contenu ?? "";
 
         if (empty($html)) {
-            return [
-                "text" => "",
-                "headings" => [],
-                "links" => []
-            ];
+            return ["blocks" => []];
         }
 
         libxml_use_internal_errors(true);
 
         $dom = new \DOMDocument();
-        $dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
+        $dom->loadHTML(
+            mb_encode_numericentity(
+                $html,
+                [0x80, 0x10FFFF, 0, ~0],
+                'UTF-8'
+            )
+        );
 
-        $text = trim($dom->textContent);
+        $blocks = [];
 
-        $headings = [];
-
-        for ($i = 2; $i <= 6; $i++) {
-            $tags = $dom->getElementsByTagName("h$i");
-
-            foreach ($tags as $tag) {
-                $headings[] = [
-                    "level" => "h$i",
-                    "text" => trim($tag->textContent)
-                ];
-            }
-        }
-
-        $links = [];
-
-        $aTags = $dom->getElementsByTagName("a");
-
-        foreach ($aTags as $a) {
-            $href = $a->getAttribute("href");
-
-            $links[] = [
-                "href" => $href,
-                "text" => trim($a->textContent)
-            ];
-        }
+        $this->walkNodes($dom->getElementsByTagName('body')->item(0), $blocks);
 
         return [
-            "text" => trim($text),
-            "headings" => $headings,
-            "links" => $links
+            "blocks" => $blocks
         ];
+    }
+
+    private function walkNodes($node, &$result)
+    {
+        foreach ($node->childNodes as $child) {
+
+            if ($child->nodeType !== XML_ELEMENT_NODE) {
+                continue;
+            }
+
+            $tag = $child->nodeName;
+
+            switch ($tag) {
+
+                case 'p':
+                    $text = trim($child->textContent);
+                    if ($text !== '') {
+                        $result[] = [
+                            "type" => "p",
+                            "text" => $text
+                        ];
+                    }
+                    break;
+
+                case 'h2':
+                case 'h3':
+                case 'h4':
+                case 'h5':
+                case 'h6':
+                    $result[] = [
+                        "type" => $tag,
+                        "text" => trim($child->textContent)
+                    ];
+                    break;
+
+                case 'blockquote':
+                    $result[] = [
+                        "type" => "blockquote",
+                        "text" => trim($child->textContent)
+                    ];
+                    break;
+
+                case 'a':
+                    $result[] = [
+                        "type" => "a",
+                        "text" => trim($child->textContent),
+                        "href" => $child->getAttribute("href")
+                    ];
+                    break;
+            }
+
+            if ($child->hasChildNodes()) {
+                $this->walkNodes($child, $result);
+            }
+        }
     }
 }
