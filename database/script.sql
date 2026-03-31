@@ -43,7 +43,7 @@ CREATE TABLE media(
    src VARCHAR(250)  NOT NULL,
    alt VARCHAR(250)  NOT NULL,
    id_article INT NOT NULL,
-   paragraphe INT,
+   paragraphe INT DEFAULT 0,
    PRIMARY KEY(id_media),
    FOREIGN KEY(id_article) REFERENCES article(id_article)
 );
